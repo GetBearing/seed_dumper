@@ -15,16 +15,14 @@ module SeedDumper
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
 
-          binding.pry
-          
-          case value.class
-          when Time
+          # binding.pry
+
+          case
+          when value.class == Time
             new_value = "\"#{value}\""
-          when DateTime
-            puts 'hi'
+          when value.class == DateTime
             value = "\"#{value}\""
-          when BigDecimal
-            puts 'hi'
+          when value.class == BigDecimal
             value = value.to_f
           else
             value = value.inspect
