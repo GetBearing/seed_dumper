@@ -14,19 +14,14 @@ module SeedDumper
         attr_s = [];
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
-          value = value.class == Time ? "\"#{value}\"" : value.inspect
-          value = nil if value.is_a?(String) && value == "\"\""
-          value = nil if value == 'nil' || value == "nil"
+
           value = value.to_f if value.is_a?(BigDecimal)
           value = value.to_s if value.is_a?(DateTime)
 
-          if value.is_a?(BigDecimal)
-            puts key, value
-          end
+          value = value.class == Time ? "\"#{value}\"" : value.inspect
+          value = nil if value.is_a?(String) && value == "\"\""
+          value = nil if value == 'nil' || value == "nil"
 
-          if value.is_a?(DateTime)
-            puts key, value
-          end
 
           unless value.nil?
             attr_s.push("#{key.to_sym.inspect} => #{value}")# unless key == 'id'
