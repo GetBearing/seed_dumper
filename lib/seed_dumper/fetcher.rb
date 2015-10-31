@@ -18,6 +18,14 @@ module SeedDumper
           value = value.to_f if value.is_a?(BigDecimal)
           value = value.to_s if value.is_a?(DateTime)
 
+          if value.is_a?(BigDecimal)
+            puts key, value
+          end
+
+          if value.is_a?(DateTime)
+            puts key, value
+          end
+
           value = value.class == Time ? "\"#{value}\"" : value.inspect
           value = nil if value.is_a?(String) && value == "\"\""
           value = nil if value == 'nil' || value == "nil"
