@@ -18,7 +18,7 @@ module SeedDumper
           # binding.pry
 
           case
-          when [Time, DateTime, ActiveSupport::TimeWithZone].include? value.class
+          when [Time, DateTime, ActiveSupport::TimeWithZone].include?(value.class)
             value = "\"#{value}\""
           when value.class == BigDecimal
             value = value.to_f
