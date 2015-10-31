@@ -15,8 +15,6 @@ module SeedDumper
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
 
-          # binding.pry
-
           case
           when [Time, DateTime, ActiveSupport::TimeWithZone].include?(value.class)
             value = "\"#{value}\""
@@ -32,7 +30,6 @@ module SeedDumper
 
           unless value.nil?
             attr_s.push("#{key.to_sym.inspect} => #{value}")# unless key == 'id'
-            puts [key, value, value.class, "#{key.to_sym.inspect} => #{value}"].join(',')
           end
         end
       
