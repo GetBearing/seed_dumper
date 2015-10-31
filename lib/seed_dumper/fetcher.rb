@@ -18,7 +18,16 @@ module SeedDumper
           value = nil if value.is_a?(String) && value == "\"\""
           value = nil if value == 'nil' || value == "nil"
           value = value.to_f if value.is_a?(BigDecimal)
-          
+          value = value.to_s if value.is_a?(DateTime)
+
+          if value.is_a?(BigDecimal)
+            puts key, value
+          end
+
+          if value.is_a?(DateTime)
+            puts key, value
+          end
+
           unless value.nil?
             attr_s.push("#{key.to_sym.inspect} => #{value}")# unless key == 'id'
           end
