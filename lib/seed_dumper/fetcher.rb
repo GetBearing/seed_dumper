@@ -14,8 +14,8 @@ module SeedDumper
         attr_s = [];
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
-          puts key, value
-          
+          puts key, value, value.class
+
           case value.class
           when Time
             value = "\"#{value}\""
