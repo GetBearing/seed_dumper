@@ -17,7 +17,8 @@ module SeedDumper
           value = value.class == Time ? "\"#{value}\"" : value.inspect
           value = nil if value.is_a?(String) && value == "\"\""
           value = nil if value == 'nil' || value == "nil"
-
+          value = value.to_f if value.is_a?(BigDecimal)
+          
           unless value.nil?
             attr_s.push("#{key.to_sym.inspect} => #{value}")# unless key == 'id'
           end
