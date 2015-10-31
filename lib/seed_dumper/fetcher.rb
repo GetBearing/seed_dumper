@@ -15,9 +15,11 @@ module SeedDumper
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
 
+          binding.pry
+          
           case value.class
           when Time
-            value = "\"#{value}\""
+            new_value = "\"#{value}\""
           when DateTime
             puts 'hi'
             value = "\"#{value}\""
