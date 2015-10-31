@@ -15,7 +15,7 @@ module SeedDumper
       
         record.attributes.delete_if { |k, v| ignore.include?(k) }.each do |key, value|
 
-          # binding.pry
+          binding.pry
 
           case
           when value.class == Time
